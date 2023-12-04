@@ -1,12 +1,12 @@
 // Styles do header
 header {
-  height: 30%;
+  height: 300px;
 
   img {
     width: 100vw;
-    height: 30%;
+    height: 300px;
     position: absolute;
-    z-index: -2;
+    z-index: -10000;
   }
 
   .header {
@@ -29,12 +29,13 @@ header {
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     &__input {
       width: 100%;
       padding: 1rem;
-      border-radius: 4px;
+      border-radius: 6px;
       border: none;
     }
 
@@ -42,20 +43,65 @@ header {
     &__moon_sun {
       margin-right: 40px;
       margin-bottom: 20px;
+      z-index: 100000;
       cursor: pointer;
 
       &__moon {
-        visibility: visible;
         img {
           height: 26px;
           width: 26px;
         }
       }
       &__sun {
-        visibility: hidden;
         img {
           height: 26px;
           width: 26px;
+        }
+      }
+    }
+  }
+}
+
+main {
+  width: 35%;
+  height: auto;
+  margin: auto;
+
+  .list {
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #f2f2f2;
+
+    position: absolute;
+    width: 35%;
+    top: 240px;
+
+    ul {
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+
+        height: 2rem;
+        padding: 2rem;
+        border-bottom: 1px solid gray;
+
+        .content {
+          font-size: 18px;
+        }
+        .content.check {
+          color: gray;
+          text-decoration: line-through;
+        }
+
+        .circle {
+          cursor: pointer;
+          &__no_check {
+            border: 1px solid gray;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+          }
         }
       }
     }

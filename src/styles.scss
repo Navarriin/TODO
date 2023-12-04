@@ -4,9 +4,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: 0.2s linear;
 }
 
-body {
+.body {
   height: 100vh;
-  background-color: aqua;
+  background-color: #f2f2f2;
+}
+.body.dark {
+  background-color: #171823;
 }
