@@ -13,14 +13,14 @@ export class AppComponent {
   protected background: boolean = true;
   protected check: boolean = false;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private element: ElementRef) {}
 
   ngOnInit(): void {
     const check: NodeListOf<HTMLElement> =
-      document.querySelectorAll('.content');
+      this.element.nativeElement.querySelectorAll('.content');
 
     const circle: NodeListOf<HTMLElement> =
-      document.querySelectorAll('.circle');
+      this.element.nativeElement.querySelectorAll('.circle');
 
     circle.forEach((value, index) => {
       value.addEventListener('click', () => {
@@ -54,6 +54,6 @@ export class AppComponent {
   }
 
   getBtn(): NodeListOf<HTMLElement> {
-    return document.querySelectorAll('.btn');
+    return this.element.nativeElement.querySelectorAll('.btn');
   }
 }
