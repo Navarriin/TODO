@@ -15,6 +15,27 @@ export class AppComponent {
 
   constructor(private renderer: Renderer2) {}
 
+  ngOnInit(): void {
+    const check: NodeListOf<HTMLElement> =
+      document.querySelectorAll('.content');
+
+    const circle: NodeListOf<HTMLElement> =
+      document.querySelectorAll('.circle');
+
+    circle.forEach((value, index) => {
+      value.addEventListener('click', () => {
+        value.classList.toggle('image'), check[index].classList.toggle('check');
+      });
+    });
+
+    this.getBtn().forEach((value) => {
+      value.addEventListener('click', () => {
+        this.remove();
+        value.classList.add('select');
+      });
+    });
+  }
+
   toggle(): void {
     const body: Element | null = document.querySelector('.body');
     this.background = !this.background;
@@ -26,14 +47,13 @@ export class AppComponent {
     }
   }
 
-  clickCheck(): void {
-    const check: HTMLElement | null = document.querySelector('.content');
-    this.check = !this.check;
+  remove(): void {
+    this.getBtn().forEach((value) => {
+      value.classList.remove('select');
+    });
+  }
 
-    if (check?.classList.contains('check')) {
-      this.renderer.removeClass(check, 'check');
-    } else {
-      this, this.renderer.addClass(check, 'check');
-    }
+  getBtn(): NodeListOf<HTMLElement> {
+    return document.querySelectorAll('.btn');
   }
 }

@@ -96,12 +96,46 @@ main {
 
         .circle {
           cursor: pointer;
+
+          img {
+            display: none;
+          }
+
           &__no_check {
+            display: block;
             border: 1px solid gray;
             border-radius: 50%;
             width: 24px;
             height: 24px;
           }
+        }
+        .circle.image {
+          img {
+            display: block;
+          }
+          .circle__no_check {
+            display: none;
+          }
+        }
+      }
+    }
+    .spans {
+      font-style: italic;
+      display: flex;
+      justify-content: space-around;
+
+      padding: 1.6rem;
+      color: #9495a5;
+
+      &__mid {
+        font-weight: bold;
+
+        display: flex;
+        gap: 0.6rem;
+        cursor: pointer;
+
+        .select {
+          color: #3a7cfd;
         }
       }
     }
