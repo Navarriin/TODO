@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TodoService } from './services/todo.service';
 import { Todos } from './interface/Todos.interface';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -17,6 +18,7 @@ export class AppComponent {
   protected check: boolean = false;
 
   allTodos$ = new Observable<Todos[]>();
+  content: string = '';
 
   constructor(
     private renderer: Renderer2,
@@ -54,14 +56,29 @@ export class AppComponent {
     this.allTodos$ = this.api.getAllTodos();
   }
 
-  select(id: number, content: string, disable: boolean): void {
+  postTodo(): void {
+    if (!this.content) {
+      return;
+    }
+    this.api
+      .postTodo({
+        content: this.content,
+        disable: false,
+      })
+      .subscribe(() => {
+        this.getAll();
+        this.content = '';
+      });
+  }
+
+  updateTodo(body: Todos): void {
     this.api
       .updateTodo({
-        id: id,
-        content: content,
-        disable: !disable,
+        disable: !body.disable,
       })
-      .subscribe(() => this.getAll());
+      .subscribe(() => {
+        this.getAll();
+      });
   }
 
   toggle(): void {

@@ -25,6 +25,25 @@ header {
       color: white;
     }
 
+    .button {
+      position: absolute;
+      right: 33%;
+      top: 172px;
+      z-index: 1000;
+
+      font-style: italic;
+
+      background-color: transparent;
+      padding: 0.4rem 1rem;
+
+      border-radius: 6px;
+      border: 1px solid rgb(137, 37, 137);
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #dac0f5;
+    }
+
     &__nav {
       width: 100%;
       display: flex;
@@ -73,6 +92,7 @@ main {
     background-color: #f2f2f2;
 
     position: absolute;
+    min-height: 600px;
     width: 35%;
     top: 240px;
 
@@ -105,7 +125,9 @@ main {
             height: 24px;
           }
           &__no_check.select {
-            background-color: rgb(90, 207, 90);
+            img {
+              display: none;
+            }
           }
         }
       }

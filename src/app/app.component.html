@@ -13,16 +13,17 @@
         </a>
       </div>
     </div>
-    <input type="text" placeholder="Create a new todo..." class="header__input">
+    <input type="text" placeholder="Create a new todo..." class="header__input" [(ngModel)]="content" name="content">
+    <button (click)="postTodo()" type="button" class="button">Register</button>
   </div>
 </header>
 <main>
   <div class="list">
     <ul *ngFor="let todo of allTodos$ | async">
       <li>
-        <div (click)="select(todo.id!, todo.content!, todo.disable)" class="circle">
-          <div *ngIf="todo.disable" class="circle__no_check"></div>
-          <img *ngIf="!todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
+        <div (click)="updateTodo(todo)" class="circle">
+          <div *ngIf="!todo.disable" class="circle__no_check"></div>
+          <img *ngIf="todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
         </div>
         <p class="content">{{ todo.content }}</p>
       </li>
