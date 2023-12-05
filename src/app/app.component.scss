@@ -97,10 +97,6 @@ main {
         .circle {
           cursor: pointer;
 
-          img {
-            display: none;
-          }
-
           &__no_check {
             display: block;
             border: 1px solid gray;
@@ -108,13 +104,8 @@ main {
             width: 24px;
             height: 24px;
           }
-        }
-        .circle.image {
-          img {
-            display: block;
-          }
-          .circle__no_check {
-            display: none;
+          &__no_check.select {
+            background-color: rgb(90, 207, 90);
           }
         }
       }

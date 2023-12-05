@@ -1,6 +1,9 @@
+import { Observable } from 'rxjs';
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { TodoService } from './services/todo.service';
+import { Todos } from './interface/Todos.interface';
 
 @Component({
   selector: 'app-root',
@@ -13,27 +16,52 @@ export class AppComponent {
   protected background: boolean = true;
   protected check: boolean = false;
 
-  constructor(private renderer: Renderer2, private element: ElementRef) {}
+  allTodos$ = new Observable<Todos[]>();
+
+  constructor(
+    private renderer: Renderer2,
+    private element: ElementRef,
+    private api: TodoService
+  ) {}
 
   ngOnInit(): void {
-    const check: NodeListOf<HTMLElement> =
-      this.element.nativeElement.querySelectorAll('.content');
+    // this.interactions();
+    this.getAll();
+  }
 
-    const circle: NodeListOf<HTMLElement> =
-      this.element.nativeElement.querySelectorAll('.circle');
+  // interactions(): void {
+  //   const check: NodeListOf<HTMLElement> =
+  //     this.element.nativeElement.querySelectorAll('.content');
 
-    circle.forEach((value, index) => {
-      value.addEventListener('click', () => {
-        value.classList.toggle('image'), check[index].classList.toggle('check');
-      });
-    });
+  //   const circle: NodeListOf<HTMLElement> =
+  //     this.element.nativeElement.querySelectorAll('.circle');
 
-    this.getBtn().forEach((value) => {
-      value.addEventListener('click', () => {
-        this.remove();
-        value.classList.add('select');
-      });
-    });
+  //   circle.forEach((value, index) => {
+  //     value.addEventListener('click', () => {
+  //       value.classList.toggle('image'), check[index].classList.toggle('check');
+  //     });
+  //   });
+
+  //   this.getBtn().forEach((value) => {
+  //     value.addEventListener('click', () => {
+  //       this.remove();
+  //       value.classList.add('select');
+  //     });
+  //   });
+  // }
+
+  getAll(): void {
+    this.allTodos$ = this.api.getAllTodos();
+  }
+
+  select(id: number, content: string, disable: boolean): void {
+    this.api
+      .updateTodo({
+        id: id,
+        content: content,
+        disable: !disable,
+      })
+      .subscribe(() => this.getAll());
   }
 
   toggle(): void {

@@ -18,41 +18,13 @@
 </header>
 <main>
   <div class="list">
-    <ul>
+    <ul *ngFor="let todo of allTodos$ | async">
       <li>
-        <div class="circle">
-          <div class="circle__no_check"></div>
-          <img src="assets/images/svg/check.svg" alt="Icon de check">
+        <div (click)="select(todo.id!, todo.content!, todo.disable)" class="circle">
+          <div *ngIf="todo.disable" class="circle__no_check"></div>
+          <img *ngIf="!todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
         </div>
-        <p class="content">Estudar Java script</p>
-      </li>
-      <li>
-        <div class="circle">
-          <div class="circle__no_check"></div>
-          <img src="assets/images/svg/check.svg" alt="Icon de check">
-        </div>
-        <p class="content">Estudar Java script</p>
-      </li>
-      <li>
-        <div class="circle">
-          <div class="circle__no_check"></div>
-          <img src="assets/images/svg/check.svg" alt="Icon de check">
-        </div>
-        <p class="content">Estudar Java script</p>
-      </li>
-      <li>
-        <div class="circle">
-          <div class="circle__no_check"></div>
-          <img src="assets/images/svg/check.svg" alt="Icon de check">
-        </div>
-        <p class="content">Estudar Java script</p>
-      </li>
-      <li>
-        <div class="circle">
-          <div class="circle__no_check"></div>
-          <img src="assets/images/svg/check.svg" alt="Icon de check">
-        </div>
-        <p class="content">Estudar Java script</p>
+        <p class="content">{{ todo.content }}</p>
       </li>
     </ul>
     <div class="spans">
