@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --background-dark: #171823;
+  --background-list: #25273d;
+  --content-check: #4d5067;
+  --border-color: #393a4b;
+  --white: #f2f2f2;
+  --light-text: #c8cbe7;
+  --light-blue: #3a7cfd;
+  --blue: #55ddff;
+  --spans: #9495a5;
+  --span-hover-dark: #494c6b;
+  --span-hover-light: #e3e4f1;
+  --light-gray: rgb(188, 185, 185);
+}
+
 * {
   font-family: "Segoe UI", sans-serif;
   margin: 0;
@@ -9,8 +24,8 @@
 
 .body {
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: var(--white);
 }
 .body.dark {
-  background-color: #171823;
+  background-color: var(--background-dark);
 }
