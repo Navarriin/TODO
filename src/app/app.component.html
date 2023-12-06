@@ -1,7 +1,7 @@
 <header>
   <img *ngIf="background" src="assets/images/png/Light-mode.png" alt="Background image light">
   <img *ngIf="!background" src="assets/images/png/Dark-mode.png" alt="Background image dark">
-  <div class="header">
+  <div class="header" [ngClass]="{'dark': !background}">
     <div class="header__nav">
       <h1>T O D O</h1>
       <div class="header__moon_sun">
@@ -18,24 +18,26 @@
   </div>
 </header>
 <main>
-  <div class="list">
-    <ul *ngFor="let todo of allTodos$ | async">
-      <li>
-        <div (click)="updateTodo(todo)" class="circle">
-          <div *ngIf="!todo.disable" class="circle__no_check"></div>
-          <img *ngIf="todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
-        </div>
-        <p class="content">{{ todo.content }}</p>
-      </li>
-    </ul>
+  <div [ngClass]="{'dark': !background}" class="list">
+    <div>
+      <ul *ngFor="let todo of allTodos">
+        <li>
+          <div (click)="updateTodo(todo)" class="circle">
+            <div *ngIf="!todo.disable" class="circle__no_check"></div>
+            <img *ngIf="todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
+          </div>
+          <p [ngClass]="{'check': todo.disable}" class="content">{{ todo.content }}</p>
+        </li>
+      </ul>
+    </div>
     <div class="spans">
-      <span>5 itens left</span>
+      <span>{{ allTodos.length }} itens left</span>
       <div class="spans__mid">
         <span class="btn select">All</span>
         <span class="btn">Active</span>
         <span class="btn">Completed</span>
       </div>
-      <span>Clear Completed</span>
+      <span class="clear">Clear Completed</span>
     </div>
   </div>
 </main>

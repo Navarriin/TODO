@@ -37,11 +37,13 @@ header {
       padding: 0.4rem 1rem;
 
       border-radius: 6px;
-      border: 1px solid rgb(137, 37, 137);
+      border: 1px solid rgb(188, 185, 185);
       cursor: pointer;
     }
     .button:hover {
-      background-color: #dac0f5;
+      -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
     }
 
     &__nav {
@@ -56,6 +58,11 @@ header {
       padding: 1rem;
       border-radius: 6px;
       border: none;
+      background-color: #f2f2f2;
+
+      -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
     }
 
     // Styles dos icons
@@ -81,20 +88,27 @@ header {
   }
 }
 
+// Styles do conteudo principal
 main {
   width: 35%;
   height: auto;
   margin: auto;
 
   .list {
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-radius: 6px;
     background-color: #f2f2f2;
 
     position: absolute;
-    min-height: 600px;
+    min-height: 500px;
     width: 35%;
     top: 240px;
+
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
 
     ul {
       li {
@@ -104,7 +118,7 @@ main {
 
         height: 2rem;
         padding: 2rem;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid rgb(188, 185, 185);
 
         .content {
           font-size: 18px;
@@ -119,10 +133,13 @@ main {
 
           &__no_check {
             display: block;
-            border: 1px solid gray;
+            border: 1px solid #393a4b;
             border-radius: 50%;
             width: 24px;
             height: 24px;
+          }
+          &__no_check:hover {
+            border: 1px solid #55ddff;
           }
           &__no_check.select {
             img {
@@ -139,6 +156,15 @@ main {
 
       padding: 1.6rem;
       color: #9495a5;
+      border-top: 1px solid rgb(188, 185, 185);
+
+      .clear {
+        cursor: pointer;
+      }
+
+      span:hover {
+        color: #494c6b;
+      }
 
       &__mid {
         font-weight: bold;
@@ -151,6 +177,41 @@ main {
           color: #3a7cfd;
         }
       }
+    }
+  }
+
+  // Styles do modo DARK
+  .list.dark {
+    background-color: #25273d;
+    ul {
+      li {
+        border-bottom: 1px solid #393a4b;
+
+        .content {
+          color: #c8cbe7;
+        }
+        .content.check {
+          color: #4d5067;
+        }
+      }
+    }
+    .spans {
+      border-top: 1px solid #393a4b;
+    }
+    .spans {
+      span:hover {
+        color: #e3e4f1;
+      }
+    }
+  }
+}
+header {
+  .header.dark {
+    .header__input {
+      background-color: #25273d;
+    }
+    .button {
+      color: #c8cbe7;
     }
   }
 }

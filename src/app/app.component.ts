@@ -14,11 +14,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  protected allTodos: Todos[] = [];
+  protected content: string = '';
+
   protected background: boolean = true;
   protected check: boolean = false;
-
-  allTodos$ = new Observable<Todos[]>();
-  content: string = '';
 
   constructor(
     private renderer: Renderer2,
@@ -27,33 +27,13 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.interactions();
     this.getAll();
   }
 
-  // interactions(): void {
-  //   const check: NodeListOf<HTMLElement> =
-  //     this.element.nativeElement.querySelectorAll('.content');
-
-  //   const circle: NodeListOf<HTMLElement> =
-  //     this.element.nativeElement.querySelectorAll('.circle');
-
-  //   circle.forEach((value, index) => {
-  //     value.addEventListener('click', () => {
-  //       value.classList.toggle('image'), check[index].classList.toggle('check');
-  //     });
-  //   });
-
-  //   this.getBtn().forEach((value) => {
-  //     value.addEventListener('click', () => {
-  //       this.remove();
-  //       value.classList.add('select');
-  //     });
-  //   });
-  // }
-
   getAll(): void {
-    this.allTodos$ = this.api.getAllTodos();
+    this.api.getAllTodos().subscribe((data) => {
+      this.allTodos = data;
+    });
   }
 
   postTodo(): void {
@@ -74,6 +54,8 @@ export class AppComponent {
   updateTodo(body: Todos): void {
     this.api
       .updateTodo({
+        id: body.id,
+        content: body.content,
         disable: !body.disable,
       })
       .subscribe(() => {
@@ -92,10 +74,12 @@ export class AppComponent {
     }
   }
 
-  remove(): void {
-    this.getBtn().forEach((value) => {
-      value.classList.remove('select');
-    });
+  addSelect(): void {
+    this.getBtn().forEach((value) => value.classList.add('select'));
+  }
+
+  removeSelect(): void {
+    this.getBtn().forEach((value) => value.classList.remove('select'));
   }
 
   getBtn(): NodeListOf<HTMLElement> {
