@@ -17,6 +17,7 @@ export class AppComponent {
   protected allTodosLength: Todos[] = [];
   protected allTodosFilter: Todos[] = [];
   protected content: string = '';
+  selectedOption: string = 'all';
 
   protected background: boolean = true;
   protected check: boolean = false;
@@ -24,7 +25,10 @@ export class AppComponent {
   constructor(private element: ElementRef, private api: TodoService) {}
 
   ngOnInit(): void {
+    const btn: NodeListOf<Element> = document.querySelectorAll('.btn');
     this.getAll();
+
+    btn.forEach;
   }
 
   getAll(): void {
@@ -72,16 +76,19 @@ export class AppComponent {
   all() {
     this.api.getAllTodos().subscribe((data) => {
       this.allTodosFilter = data;
+      this.selectedOption = 'all';
     });
   }
   active() {
     this.api.getAllTodos().subscribe((data) => {
       this.allTodosFilter = data.filter((value) => value.disable === false);
+      this.selectedOption = 'active';
     });
   }
   completed() {
     this.api.getAllTodos().subscribe((data) => {
       this.allTodosFilter = data.filter((value) => value.disable === true);
+      this.selectedOption = 'completed';
     });
   }
 }

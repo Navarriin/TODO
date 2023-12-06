@@ -33,9 +33,9 @@
     <div class="spans">
       <span>{{ allTodosLength.length }} itens left</span>
       <div class="spans__mid">
-        <span (click)="all()" class="btn select">All</span>
-        <span (click)="active()" class="btn">Active</span>
-        <span (click)="completed()" class="btn">Completed</span>
+        <span (click)="all()" [ngClass]="{'select': selectedOption === 'all'}" class="btn">All</span>
+        <span (click)="active()" [ngClass]="{'select': selectedOption === 'active'}" class="btn">Active</span>
+        <span (click)="completed()" [ngClass]="{'select': selectedOption === 'completed'}" class="btn">Completed</span>
       </div>
       <span class="clear">Clear Completed</span>
     </div>
