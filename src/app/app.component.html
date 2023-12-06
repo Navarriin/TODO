@@ -26,7 +26,7 @@
             <div *ngIf="!todo.disable" class="circle__no_check"></div>
             <img *ngIf="todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
           </div>
-          <p [ngClass]="{'check': todo.disable}" class="content">{{ todo.content }}</p>
+          <p [ngClass]="{'check': todo.disable}" class="content">{{ captalize(todo.content!) }}</p>
         </li>
       </ul>
     </div>

@@ -85,4 +85,8 @@ export class AppComponent {
   getBtn(): NodeListOf<HTMLElement> {
     return this.element.nativeElement.querySelectorAll('.btn');
   }
+
+  captalize(content: string): string {
+    return content.charAt(0).toUpperCase() + content.slice(1);
+  }
 }
