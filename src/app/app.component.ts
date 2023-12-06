@@ -16,19 +16,17 @@ export class AppComponent {
   protected allTodos: Todos[] = [];
   protected allTodosLength: Todos[] = [];
   protected allTodosFilter: Todos[] = [];
+  protected numberDelete: Todos[] = [];
   protected content: string = '';
-  selectedOption: string = 'all';
+  protected selectedOption: string = 'all';
 
   protected background: boolean = true;
   protected check: boolean = false;
 
-  constructor(private element: ElementRef, private api: TodoService) {}
+  constructor(private api: TodoService) {}
 
   ngOnInit(): void {
-    const btn: NodeListOf<Element> = document.querySelectorAll('.btn');
     this.getAll();
-
-    btn.forEach;
   }
 
   getAll(): void {
@@ -66,6 +64,17 @@ export class AppComponent {
       });
   }
 
+  deleteTodo(): void {
+    this.numberDelete = this.allTodos.filter((value) => value.disable === true);
+    const idsToDelete: (number | undefined)[] = this.numberDelete.map(
+      (todo) => todo.id
+    );
+
+    idsToDelete.forEach((id) => {
+      this.api.deleteTodo(id!).subscribe(() => this.getAll());
+    });
+  }
+
   toggle(): void {
     const body: Element | null = document.querySelector('.body');
     this.background = !this.background;
@@ -74,21 +83,21 @@ export class AppComponent {
   }
 
   all() {
-    this.api.getAllTodos().subscribe((data) => {
-      this.allTodosFilter = data;
-      this.selectedOption = 'all';
-    });
+    this.allTodosFilter = this.allTodos;
+    this.selectedOption = 'all';
   }
+
   active() {
-    this.api.getAllTodos().subscribe((data) => {
-      this.allTodosFilter = data.filter((value) => value.disable === false);
-      this.selectedOption = 'active';
-    });
+    this.allTodosFilter = this.allTodos.filter(
+      (value) => value.disable === false
+    );
+    this.selectedOption = 'active';
   }
+
   completed() {
-    this.api.getAllTodos().subscribe((data) => {
-      this.allTodosFilter = data.filter((value) => value.disable === true);
-      this.selectedOption = 'completed';
-    });
+    this.allTodosFilter = this.allTodos.filter(
+      (value) => value.disable === true
+    );
+    this.selectedOption = 'completed';
   }
 }

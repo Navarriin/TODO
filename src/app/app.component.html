@@ -37,7 +37,7 @@
         <span (click)="active()" [ngClass]="{'select': selectedOption === 'active'}" class="btn">Active</span>
         <span (click)="completed()" [ngClass]="{'select': selectedOption === 'completed'}" class="btn">Completed</span>
       </div>
-      <span class="clear">Clear Completed</span>
+      <span (click)="deleteTodo()" class="clear">Clear Completed</span>
     </div>
   </div>
 </main>
