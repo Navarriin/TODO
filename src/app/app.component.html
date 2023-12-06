@@ -20,22 +20,22 @@
 <main>
   <div [ngClass]="{'dark': !background}" class="list">
     <div>
-      <ul *ngFor="let todo of allTodos">
+      <ul *ngFor="let todo of allTodosFilter">
         <li>
           <div (click)="updateTodo(todo)" class="circle">
             <div *ngIf="!todo.disable" class="circle__no_check"></div>
             <img *ngIf="todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
           </div>
-          <p [ngClass]="{'check': todo.disable}" class="content">{{ captalize(todo.content!) }}</p>
+          <p [ngClass]="{'check': todo.disable}" class="content">{{ todo.content }}</p>
         </li>
       </ul>
     </div>
     <div class="spans">
-      <span>{{ allTodos.length }} itens left</span>
+      <span>{{ allTodosLength.length }} itens left</span>
       <div class="spans__mid">
-        <span class="btn select">All</span>
-        <span class="btn">Active</span>
-        <span class="btn">Completed</span>
+        <span (click)="all()" class="btn select">All</span>
+        <span (click)="active()" class="btn">Active</span>
+        <span (click)="completed()" class="btn">Completed</span>
       </div>
       <span class="clear">Clear Completed</span>
     </div>
