@@ -1,27 +1,40 @@
-# Todo
+# T O D O - Gabriel Navarro
+![Static Badge](https://img.shields.io/badge/TypeScript-purple)
+![Static Badge](https://img.shields.io/badge/Angular-purple)
+![Static Badge](https://img.shields.io/badge/SCSS-purple)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.1.
+![Tela em modo Light](https://github.com/Navarriin/TODO/assets/139160874/31c90da0-e732-4bc1-8efd-494d7ace5421)
+![Tela em modo Dark](https://github.com/Navarriin/TODO/assets/139160874/ba651561-bcc4-4dd6-8d0d-84b571207995)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## :smile: Descrição 
+Projeto baseado em uma lista de tarefas (TODO List), com escolha de tema claro ou escuro, onde você pode criar novas tarefas, apagar, marcar como feitas e até mesmo filtrar pelas já concluídas ou não concluídas.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### [Clique para ver o Figma que me inspirei](https://www.figma.com/file/EIIav58k990PCpE9FU12rg/todo-app-(Community)?type=design&node-id=0-1&mode=design&t=3og4c9hAVrdlSiZl-0)
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## :pushpin: Como Utilizar
 
-## Running unit tests
+### 1. Clone o repositório
+```
+git clone https://github.com/Navarriin/Meu_portfolio.git
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 2. Instale as dependencias
+```
+npm install
+```
 
-## Running end-to-end tests
+### 3. Suba o servidor Json
+```
+json-server --watch db.json
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 4. Suba a aplicação em um CMD diferente do que subiu o Json
+```
+ng serve
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Após realizar esta sequência de passos a aplicação já estará pronta para ser utilizada na porta -> http://localhost:4200/
