@@ -67,6 +67,8 @@ header {
       -webkit-box-shadow: $box-shadow;
       -moz-box-shadow: $box-shadow;
       box-shadow: $box-shadow;
+
+      font-size: 18px;
     }
 
     // Styles dos icons
@@ -213,6 +215,7 @@ header {
   .header.dark {
     .header__input {
       background-color: var(--background-list);
+      color: white;
     }
     .button {
       color: var(--light-text);
