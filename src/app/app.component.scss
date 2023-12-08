@@ -219,3 +219,23 @@ header {
     }
   }
 }
+
+footer {
+  .footer {
+    font-style: italic;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30%;
+    top: 850px;
+    right: 35%;
+    margin: 0 auto;
+
+    position: absolute;
+  }
+  .footer.dark {
+    color: var(--light-text);
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TodoService } from './services/todo.service';
@@ -17,6 +17,7 @@ export class AppComponent {
   protected allTodosLength: Todos[] = [];
   protected allTodosFilter: Todos[] = [];
   protected numberDelete: Todos[] = [];
+
   protected content: string = '';
   protected selectedOption: string = 'all';
 

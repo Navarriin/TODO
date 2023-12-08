@@ -20,8 +20,8 @@
 <main>
   <div [ngClass]="{'dark': !background}" class="list">
     <div>
-      <ul *ngFor="let todo of allTodosFilter">
-        <li>
+      <ul>
+        <li *ngFor="let todo of allTodosFilter">
           <div (click)="updateTodo(todo)" class="circle">
             <div *ngIf="!todo.disable" class="circle__no_check"></div>
             <img *ngIf="todo.disable" src="assets/images/svg/check.svg" alt="Icon de check">
@@ -31,7 +31,7 @@
       </ul>
     </div>
     <div class="spans">
-      <span>{{ allTodosLength.length }} itens left</span>
+      <span>{{ allTodosLength.length }} items left</span>
       <div class="spans__mid">
         <span (click)="all()" [ngClass]="{'select': selectedOption === 'all'}" class="btn">All</span>
         <span (click)="active()" [ngClass]="{'select': selectedOption === 'active'}" class="btn">Active</span>
@@ -42,5 +42,7 @@
   </div>
 </main>
 <footer>
-
+  <div [ngClass]="{'dark': !background}" class="footer">
+    <span>Gabriel Navarro - 2023</span>
+  </div>
 </footer>
