@@ -19,7 +19,7 @@ Projeto baseado em uma lista de tarefas (TODO List), com escolha de tema claro o
 
 ### 1. Clone o repositório
 ```
-git clone https://github.com/Navarriin/Meu_portfolio.git
+git clone https://github.com/Navarriin/TODO.git
 ```
 
 ### 2. Instale as dependencias
