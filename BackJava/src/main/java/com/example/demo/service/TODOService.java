@@ -26,7 +26,7 @@ public class TODOService {
         return todosList;
     }
 
-    public ResponseEntity getById(Long id) {
+    public ResponseEntity<TODO> getById(Long id) {
         Optional<TODO> tododtoOptional = repository.findById(id);
         if(tododtoOptional.isPresent()){
             TODO todo = tododtoOptional.get();
@@ -36,7 +36,7 @@ public class TODOService {
         }
     }
 
-    public ResponseEntity createTodo(TODODTO body) {
+    public ResponseEntity<TODO> createTodo(TODODTO body) {
        TODO todo = new TODO(body);
       try {
           repository.save(todo);
@@ -45,4 +45,19 @@ public class TODOService {
           return ResponseEntity.badRequest().build();
       }
     }
+
+    public ResponseEntity<TODO> updateTodo(Long id, TODODTO body) {
+        Optional<TODO> todoOptional = repository.findById(id);
+        if(todoOptional.isPresent()){
+            TODO todo = todoOptional.get();
+            todo.setId(body.id());
+            todo.setContent(body.content());
+            todo.setStatus(body.status());
+
+            return ResponseEntity.ok(todo);
+        }else {
+            throw new EntityNotFoundException();
+        }
+    }
+
 }

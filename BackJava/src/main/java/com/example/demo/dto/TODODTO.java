@@ -8,6 +8,9 @@ public record TODODTO(Long id, String content, Status status){
         this(todo.getId(), todo.getContent(), todo.getStatus());
     }
 
+    public TODODTO(TODODTO body) {
+        this(body.id(), body.content(), body.status());
+    }
 }
 
 
