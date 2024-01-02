@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -25,7 +24,7 @@ public class TODOService {
     public List<TODODTO> getAll() {
         List<TODODTO> todosList = repository.findAll().stream().map(TODODTO::new).toList();
         return todosList;
-    };
+    }
 
     public ResponseEntity getById(Long id) {
         Optional<TODO> tododtoOptional = repository.findById(id);
@@ -35,5 +34,15 @@ public class TODOService {
         } else{
           throw new EntityNotFoundException();
         }
+    }
+
+    public ResponseEntity createTodo(TODODTO body) {
+       TODO todo = new TODO(body);
+      try {
+          repository.save(todo);
+          return ResponseEntity.ok(todo);
+      } catch (Exception err) {
+          return ResponseEntity.badRequest().build();
+      }
     }
 }

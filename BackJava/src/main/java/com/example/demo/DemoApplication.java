@@ -21,10 +21,10 @@ public class DemoApplication {
 
 			for(int i = 0; i < 5; i++) {
 
-				TODO tarefa = new TODO();
-				tarefa.setContent("Angular com Spring " + i);
+				TODO todo = new TODO();
+				todo.setContent("Angular com Spring " + i);
 
-				repository.save(tarefa);
+				repository.save(todo);
 			}
 		};
 	}

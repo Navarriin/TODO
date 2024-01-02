@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.dto.TODODTO;
 import com.example.demo.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -28,6 +29,10 @@ public class TODO {
         this.id = id;
         this.content = content;
         this.status = status;
+    }
+
+    public TODO(TODODTO body) {
+        this.content = body.content();
     }
 
     public Long getId() {
