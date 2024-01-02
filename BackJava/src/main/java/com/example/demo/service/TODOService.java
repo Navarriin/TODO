@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -23,12 +25,11 @@ public class TODOService {
     }
 
     public List<TODODTO> getAll() {
-        List<TODODTO> todosList = repository.findAll()
-                .stream().map(TODODTO::new).toList();
-        List<TODODTO> todosListActive = todosList
-                .stream().filter(data ->
-                data.status().equals(Status.ACTIVE)).toList();
-        return todosListActive;
+        return repository.findAll()
+                .stream().map(TODODTO::new)
+                .filter(data -> data.status().equals(Status.ACTIVE))
+                .sorted(((obj1, obj2) -> Long.compare(obj1.id(), obj2.id()))) // Ordenando a lista por Id
+                .collect(Collectors.toList());
     }
 
     public ResponseEntity<TODO> getById(Long id) {
@@ -73,7 +74,7 @@ public class TODOService {
           if(todoOptional.isPresent()){
               TODO todo = todoOptional.get();
 
-              if(Status.ACTIVE.equals(todo.getStatus())){
+              if(todo.getStatus().equals(Status.ACTIVE)){
                   repository.deleteById(id);
                   return ResponseEntity.ok("Task deleted successfully!");
               }else {
