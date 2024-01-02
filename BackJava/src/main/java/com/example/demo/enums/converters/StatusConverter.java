@@ -15,7 +15,6 @@ public class StatusConverter implements AttributeConverter<Status, String> {
         }
         return status.getValue();
     }
-
     @Override
     public Status convertToEntityAttribute(String value) {
         if (value == null) {

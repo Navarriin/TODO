@@ -20,9 +20,6 @@ public class TODO {
     @Column(length = 300, nullable = false)
     private String content;
 
-    @NotNull
-    @NotBlank
-    @Column(nullable = false)
     private Status status = Status.ACTIVE;
 
     public TODO() {}

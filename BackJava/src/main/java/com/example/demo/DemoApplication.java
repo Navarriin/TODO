@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.enums.Status;
 import com.example.demo.model.TODO;
 import com.example.demo.repository.TODORepository;
 import org.springframework.boot.CommandLineRunner;
@@ -15,20 +14,19 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	/*@Bean
+	@Bean
 	CommandLineRunner initDatabase(TODORepository repository){
 		return args -> {
 			repository.deleteAll();
 
 			for(int i = 0; i < 5; i++) {
 
-				TODO todo = new TODO();
-				todo.setContent("Angular com Spring " + i);
-				todo.setStatus(Status.ACTIVE);
+				TODO tarefa = new TODO();
+				tarefa.setContent("Angular com Spring " + i);
 
-				repository.save(todo);
+				repository.save(tarefa);
 			}
 		};
-	}*/
+	}
 
 }
