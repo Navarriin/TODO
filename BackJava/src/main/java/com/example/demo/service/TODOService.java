@@ -23,8 +23,12 @@ public class TODOService {
     }
 
     public List<TODODTO> getAll() {
-        List<TODODTO> todosList = repository.findAll().stream().map(TODODTO::new).toList();
-        return todosList;
+        List<TODODTO> todosList = repository.findAll()
+                .stream().map(TODODTO::new).toList();
+        List<TODODTO> todosListActive = todosList
+                .stream().filter(data ->
+                data.status().equals(Status.ACTIVE)).toList();
+        return todosListActive;
     }
 
     public ResponseEntity<TODO> getById(Long id) {
