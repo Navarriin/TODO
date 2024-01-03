@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,29 +31,22 @@ public class TODOService {
                 .collect(Collectors.toList());
     }
 
-    public ResponseEntity<TODO> getById(Long id) {
+    public TODO getById(Long id) {
         Optional<TODO> tododtoOptional = repository.findById(id);
 
         if(tododtoOptional.isPresent()){
-            TODO todo = tododtoOptional.get();
-            return ResponseEntity.ok(todo);
+            return tododtoOptional.get();
         } else{
           throw new EntityNotFoundException();
         }
     }
 
-    public ResponseEntity<TODO> createTodo(TODODTO body) {
-       TODO todo = new TODO(body);
-
-      try {
-          repository.save(todo);
-          return ResponseEntity.ok(todo);
-      } catch (Exception err) {
-          return ResponseEntity.badRequest().build();
-      }
+    public TODO createTodo(TODODTO body) {
+        TODO todo = new TODO(body);
+        return repository.save(todo);
     }
 
-    public ResponseEntity<TODO> updateTodo(Long id, TODODTO body) {
+    public TODO updateTodo(Long id, TODODTO body) {
         Optional<TODO> todoOptional = repository.findById(id);
 
         if(todoOptional.isPresent()){
@@ -62,26 +54,28 @@ public class TODOService {
             todo.setId(body.id());
             todo.setContent(body.content());
             todo.setStatus(body.status());
-            return ResponseEntity.ok(todo);
+            return todo;
         }else {
-            throw new EntityNotFoundException();
+            throw new IllegalArgumentException();
         }
     }
 
-    public ResponseEntity<String> deleteTodo(Long id) {
+    public String deleteTodo(Long id) {
           Optional<TODO> todoOptional = repository.findById(id);
+          final String successMessage = "Task deleted successfully!";
+          final String errorMessage = "This id does not exist!";
 
           if(todoOptional.isPresent()){
               TODO todo = todoOptional.get();
 
               if(todo.getStatus().equals(Status.ACTIVE)){
                   repository.deleteById(id);
-                  return ResponseEntity.ok("Task deleted successfully!");
+                  return successMessage;
               }else {
-                  return ResponseEntity.badRequest().body("This id does not exist!");
+                  return errorMessage;
               }
           }else {
-              return ResponseEntity.badRequest().body("This id does not exist!");
+              return errorMessage;
           }
     }
 }
