@@ -10,7 +10,7 @@ public class TODOMapper {
         if(todo == null) {
             return null;
         }
-        return new TODODTO(todo.getId(), todo.getContent(), todo.getStatus());
+        return new TODODTO(todo.getId(), todo.getContent(), todo.getStatus(), todo.getActive());
     }
 
     public TODO toEntity( TODODTO todoDto) {

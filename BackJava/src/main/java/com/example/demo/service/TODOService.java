@@ -52,6 +52,7 @@ public class TODOService {
             todo.setId(body.id());
             todo.setContent(body.content());
             todo.setStatus(body.status());
+            todo.setActive(body.active());
             return todo;
         }else {
             throw new IllegalArgumentException();

@@ -24,12 +24,15 @@ public class TODO {
 
     private Boolean status = true;
 
+    private Boolean active = true;
+
     public TODO() {}
 
-    public TODO(Long id, String content, Boolean status) {
+    public TODO(Long id, String content, Boolean status, Boolean active) {
         this.id = id;
         this.content = content;
         this.status = status;
+        this.active = active;
     }
 
     public TODO(TODODTO body) {
@@ -58,5 +61,13 @@ public class TODO {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }
