@@ -19,7 +19,7 @@ export class TodoService {
     return this.http.post<Todos>(this.api, body);
   }
 
-  updateTodo(body: Partial<Todos>): Observable<Todos> {
+  updateTodo(body: Todos): Observable<Todos> {
     return this.http.put<Todos>(`${this.api}/${body.id}`, body);
   }
 }

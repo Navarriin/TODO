@@ -22,9 +22,7 @@ export class AppComponent {
 
   protected background: boolean = true;
 
-  constructor(private api: TodoService) {}
-
-  ngOnInit(): void {
+  constructor(private api: TodoService) {
     this.getAll();
   }
 
