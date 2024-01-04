@@ -13,10 +13,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  protected allTodos: Todos[] = [];
-  protected allTodosLength: Todos[] = [];
-  protected allTodosFilter: Todos[] = [];
-  protected numberDelete: Todos[] = [];
+  protected allTodos!: Todos[];
+  protected allTodosFilter!: Todos[];
+  protected numberDelete!: Todos[];
 
   protected content: string = '';
   protected selectedOption: string = 'all';
@@ -34,7 +33,6 @@ export class AppComponent {
     this.api.getAllTodos().subscribe((data) => {
       this.allTodos = data;
       this.allTodosFilter = this.allTodos;
-      this.allTodosLength = data.filter((value) => value.disable === false);
     });
   }
 
@@ -42,35 +40,23 @@ export class AppComponent {
     if (!this.content) {
       return;
     }
-    this.api
-      .postTodo({
-        content: this.content,
-        disable: false,
-      })
-      .subscribe(() => {
-        this.getAll();
-        this.content = '';
-      });
+    this.api.postTodo({ content: this.content }).subscribe(() => {
+      this.getAll();
+      this.content = '';
+    });
   }
 
   updateTodo(body: Todos): void {
-    this.api
-      .updateTodo({
-        id: body.id,
-        content: body.content,
-        disable: !body.disable,
-      })
-      .subscribe(() => {
-        this.getAll();
-      });
+    // this.api
+    //   .updateTodo({ id: body.id, content: body.content, status: !body.status })
+    //   .subscribe(() => this.getAll());
   }
 
   deleteTodo(): void {
-    this.numberDelete = this.allTodos.filter((value) => value.disable === true);
+    this.numberDelete = this.allTodos.filter((value) => value.active === false);
     const idsToDelete: (number | undefined)[] = this.numberDelete.map(
       (todo) => todo.id
     );
-
     idsToDelete.forEach((id) => {
       this.api.deleteTodo(id!).subscribe(() => this.getAll());
     });
@@ -84,21 +70,21 @@ export class AppComponent {
   }
 
   all() {
-    this.allTodosFilter = this.allTodos;
-    this.selectedOption = 'all';
+    //   this.allTodosFilter = this.allTodos;
+    //   this.selectedOption = 'all';
   }
 
   active() {
     this.allTodosFilter = this.allTodos.filter(
-      (value) => value.disable === false
+      (value) => value.status === true
     );
     this.selectedOption = 'active';
   }
 
   completed() {
-    this.allTodosFilter = this.allTodos.filter(
-      (value) => value.disable === true
-    );
-    this.selectedOption = 'completed';
+    //   this.allTodosFilter = this.allTodos.filter(
+    //     (value) => value.disable === true
+    //   );
+    //   this.selectedOption = 'completed';
   }
 }

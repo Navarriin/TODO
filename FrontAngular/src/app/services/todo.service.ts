@@ -7,7 +7,7 @@ import { Todos } from '../interface/Todos.interface';
   providedIn: 'root',
 })
 export class TodoService {
-  readonly api: string = 'http://localhost:3000/Todos';
+  readonly api: string = 'http://localhost:8080/todo';
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +15,7 @@ export class TodoService {
     return this.http.get<Todos[]>(this.api);
   }
 
-  postTodo(body: Todos): Observable<Todos> {
+  postTodo(body: Partial<Todos>): Observable<Todos> {
     return this.http.post<Todos>(this.api, body);
   }
 
