@@ -2,6 +2,8 @@
 ![Static Badge](https://img.shields.io/badge/TypeScript-purple)
 ![Static Badge](https://img.shields.io/badge/Angular-purple)
 ![Static Badge](https://img.shields.io/badge/SCSS-purple)
+![Static Badge](https://img.shields.io/badge/Java-purple)
+![Static Badge](https://img.shields.io/badge/Spring-purple)
 
 ![Tela em modo Light](https://github.com/Navarriin/TODO/assets/139160874/31c90da0-e732-4bc1-8efd-494d7ace5421)
 ![Tela em modo Dark](https://github.com/Navarriin/TODO/assets/139160874/ba651561-bcc4-4dd6-8d0d-84b571207995)
@@ -22,19 +24,30 @@ Projeto baseado em uma lista de tarefas (TODO List), com escolha de tema claro o
 git clone https://github.com/Navarriin/TODO.git
 ```
 
-### 2. Instale as dependencias
+### 2. Abra a pasta FrontAngular no vsCode
+```
+cd FrontAngular
+code .
+```
+
+### 3. Instale as dependencias no vsCode
 ```
 npm install
 ```
 
-### 3. Suba o servidor Json
-```
-json-server --watch db.json
-```
-
-### 4. Suba a aplicação em um CMD diferente do que subiu o Json
+### 4. Suba o Front end
 ```
 ng serve
+```
+
+### 5. Abra a pasta BackJava no IntelliJ
+```
+cd BackJava
+```
+
+### 6. Suba o Back end (na porta /localhost:8080)
+```
+clique na setinha verde do IntelliJ
 ```
 
 Após realizar esta sequência de passos a aplicação já estará pronta para ser utilizada na porta -> http://localhost:4200/
