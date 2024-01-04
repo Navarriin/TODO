@@ -23,17 +23,17 @@
       <ul>
         <li *ngFor="let todo of allTodosFilter ">
           <div (click)="updateTodo(todo)" class="circle">
-            <div *ngIf="!background" class="circle__no_check"></div>
-            <img *ngIf="background" src="assets/images/svg/check.svg" alt="Icon de check">
+            <div *ngIf="todo.active" class="circle__no_check"></div>
+            <img *ngIf="!todo.active" src="assets/images/svg/check.svg" alt="Icon de check">
           </div>
-          <p [ngClass]="{'check': !background}" class="content">
+          <p [ngClass]="{'check': !todo.active}" class="content">
             {{ todo.content }}
           </p>
         </li>
       </ul>
     </div>
     <div class="spans">
-      <span>{{ allTodosFilter.length }} items left</span>
+      <span>{{ allTodosFilter.length }} Todos...</span>
       <div class="spans__mid">
         <span (click)="all()" [ngClass]="{'select': selectedOption === 'all'}" class="btn">All</span>
         <span (click)="active()" [ngClass]="{'select': selectedOption === 'active'}" class="btn">Active</span>

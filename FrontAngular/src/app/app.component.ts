@@ -21,7 +21,6 @@ export class AppComponent {
   protected selectedOption: string = 'all';
 
   protected background: boolean = true;
-  protected check: boolean = false;
 
   constructor(private api: TodoService) {}
 
@@ -47,19 +46,31 @@ export class AppComponent {
   }
 
   updateTodo(body: Todos): void {
-    // this.api
-    //   .updateTodo({ id: body.id, content: body.content, status: !body.status })
-    //   .subscribe(() => this.getAll());
+    this.api
+      .updateTodo({
+        id: body.id,
+        content: body.content,
+        status: body.status,
+        active: !body.active,
+      })
+      .subscribe(() => this.getAll());
   }
 
   deleteTodo(): void {
-    this.numberDelete = this.allTodos.filter((value) => value.active === false);
-    const idsToDelete: (number | undefined)[] = this.numberDelete.map(
-      (todo) => todo.id
+    this.numberDelete = this.allTodosFilter.filter(
+      (value) => value.active === false
     );
-    idsToDelete.forEach((id) => {
-      this.api.deleteTodo(id!).subscribe(() => this.getAll());
-    });
+
+    this.numberDelete.forEach((value) =>
+      this.api
+        .updateTodo({
+          id: value.id,
+          content: value.content,
+          status: !value.status,
+          active: value.active,
+        })
+        .subscribe(() => this.getAll())
+    );
   }
 
   toggle(): void {
@@ -70,21 +81,21 @@ export class AppComponent {
   }
 
   all() {
-    //   this.allTodosFilter = this.allTodos;
-    //   this.selectedOption = 'all';
+    this.allTodosFilter = this.allTodos;
+    this.selectedOption = 'all';
   }
 
   active() {
     this.allTodosFilter = this.allTodos.filter(
-      (value) => value.status === true
+      (value) => value.active === true
     );
     this.selectedOption = 'active';
   }
 
   completed() {
-    //   this.allTodosFilter = this.allTodos.filter(
-    //     (value) => value.disable === true
-    //   );
-    //   this.selectedOption = 'completed';
+    this.allTodosFilter = this.allTodos.filter(
+      (value) => value.active === false
+    );
+    this.selectedOption = 'completed';
   }
 }
