@@ -35,9 +35,9 @@ code .
 npm install
 ```
 
-### 4. Suba o Front end
+### 4. Abra o Docker em seu computador
 ```
-ng serve
+Apenas abra :D
 ```
 
 ### 5. Abra a pasta BackJava no IntelliJ
@@ -48,6 +48,11 @@ cd BackJava
 ### 6. Suba o Back end (na porta /localhost:8080)
 ```
 clique na setinha verde do IntelliJ
+```
+
+### 7. Suba o Front end
+```
+ng serve
 ```
 
 Após realizar esta sequência de passos a aplicação já estará pronta para ser utilizada na porta -> http://localhost:4200/
