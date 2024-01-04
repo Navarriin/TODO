@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.dto.TODODTO;
 import com.example.demo.model.TODO;
 import com.example.demo.service.TODOService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,12 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.TODODTO;
-import com.example.demo.enums.Status;
 import com.example.demo.model.TODO;
 import com.example.demo.repository.TODORepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +24,7 @@ public class TODOService {
     public List<TODODTO> getAll() {
         return repository.findAll()
                 .stream().map(TODODTO::new)
-                .filter(data -> data.status().equals(Status.ACTIVE))
+                .filter(data -> data.status().equals(true))
                 .sorted(((obj1, obj2) -> Long.compare(obj1.id(), obj2.id()))) // Ordenando a lista por Id
                 .collect(Collectors.toList());
     }
@@ -68,7 +66,7 @@ public class TODOService {
           if(todoOptional.isPresent()){
               TODO todo = todoOptional.get();
 
-              if(todo.getStatus().equals(Status.ACTIVE)){
+              if(todo.getStatus().equals(true)){
                   repository.deleteById(id);
                   return successMessage;
               }else {

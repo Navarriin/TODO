@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import com.example.demo.dto.TODODTO;
-import com.example.demo.enums.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,11 +22,11 @@ public class TODO {
     @Column(length = 300, nullable = false)
     private String content;
 
-    private Status status = Status.ACTIVE;
+    private Boolean status = true;
 
     public TODO() {}
 
-    public TODO(Long id, String content, Status status) {
+    public TODO(Long id, String content, Boolean status) {
         this.id = id;
         this.content = content;
         this.status = status;
@@ -53,11 +52,11 @@ public class TODO {
         this.content = content;
     }
 
-    public Status getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 }
