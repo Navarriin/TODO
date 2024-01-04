@@ -14,19 +14,4 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner initDatabase(TODORepository repository){
-		return args -> {
-			repository.deleteAll();
-
-			for(int i = 0; i < 5; i++) {
-
-				TODO todo = new TODO();
-				todo.setContent("Angular com Spring " + i);
-
-				repository.save(todo);
-			}
-		};
-	}
-
 }
